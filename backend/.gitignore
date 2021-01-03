@@ -132,3 +132,4 @@ dmypy.json
 .vscode
 .idea
 main.py
+entry_point.py
