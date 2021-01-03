@@ -1,15 +1,16 @@
 import psycopg3
 
-from peewee import *
-
 from datetime import datetime
+from peewee import (Model, CharField, TextField, DateTimeField, DateField, ForeignKeyField,
+    PostgresqlDatabase)
+
+from .settings import config
+
+db_config = config.get('db', {})
 
 pg_db = PostgresqlDatabase(
-    'comuna',
-    user='',
-    password='',
-    host='localhost',
-    port=5432)
+    'comuna', user=db_config.get('user'), password=db_config.get('password'),
+    host=db_config.get('host'), port=db_config.get('port'))
 
 
 class User(Model):
@@ -33,6 +34,20 @@ class User(Model):
         default=datetime.now, null=False)
     updated_at = DateTimeField(
         default=datetime.now, null=False)
+
+    @property
+    def __dict__(self):
+        return {
+            'username': self.username,
+            'email': self.email,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'description': self.description,
+            'icon': self.icon,
+            'birthday': self.birthday,
+            'created_at': str(self.created_at),
+            'updated_at': str(self.updated_at)
+        }
 
     class Meta:
         database = pg_db
