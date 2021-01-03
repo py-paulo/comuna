@@ -3,3 +3,4 @@ psycopg3 @ git+https://github.com/psycopg/psycopg3.git@99b924429537f9e6dd2b02c70
 sanic~=20.12.0
 sanic-jwt~=1.5.0
 psycopg2~=2.8.6
+PyYAML~=5.3.1

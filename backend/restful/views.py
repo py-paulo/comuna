@@ -16,7 +16,7 @@ async def get_user(request, user_id):
         user = User.select().where(User.id == user_id).get()
     except peewee.DoesNotExist:
         return json({})
-    return json(user.__dict__)
+    return json(user.to_dict)
 
 @protected()
 async def create_user(request):

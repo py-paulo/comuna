@@ -36,7 +36,7 @@ class User(Model):
         default=datetime.now, null=False)
 
     @property
-    def __dict__(self):
+    def to_dict(self):
         return {
             'username': self.username,
             'email': self.email,
